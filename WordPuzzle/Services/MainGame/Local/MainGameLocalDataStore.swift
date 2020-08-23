@@ -50,7 +50,7 @@ final class MainGameLocalDataStore: MainGameLocalDataStoreType {
     private func setupBindings() {
         input.getWordsSubject.subscribe(onNext: { [weak self] (_) in
             self?.fetchLocalWords()
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
     }
     
