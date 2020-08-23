@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		6E28548A24F2137400D64A6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E28548924F2137400D64A6A /* Assets.xcassets */; };
 		6E28548D24F2137400D64A6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E28548B24F2137400D64A6A /* LaunchScreen.storyboard */; };
 		6E28549824F2137400D64A6A /* WordPuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28549724F2137400D64A6A /* WordPuzzleTests.swift */; };
+		CDC4F582054BD643D553AB7F /* Pods_WordPuzzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DA1E7C0A29198C208546A3 /* Pods_WordPuzzleTests.framework */; };
+		E827B231658D524551BD93B8 /* Pods_WordPuzzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D3E8223D372AEC35E12C0F /* Pods_WordPuzzle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47D3E8223D372AEC35E12C0F /* Pods_WordPuzzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordPuzzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491C2C249236F2A9B37BE5D0 /* Pods-WordPuzzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordPuzzle.release.xcconfig"; path = "Target Support Files/Pods-WordPuzzle/Pods-WordPuzzle.release.xcconfig"; sourceTree = "<group>"; };
+		53DA1E7C0A29198C208546A3 /* Pods_WordPuzzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordPuzzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E28547D24F2137000D64A6A /* WordPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E28548024F2137000D64A6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E28548224F2137000D64A6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +43,9 @@
 		6E28549324F2137400D64A6A /* WordPuzzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordPuzzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E28549724F2137400D64A6A /* WordPuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPuzzleTests.swift; sourceTree = "<group>"; };
 		6E28549924F2137400D64A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92720C4084D502C149C2589E /* Pods-WordPuzzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordPuzzle.debug.xcconfig"; path = "Target Support Files/Pods-WordPuzzle/Pods-WordPuzzle.debug.xcconfig"; sourceTree = "<group>"; };
+		96E5C4588426E7A1B9D4167C /* Pods-WordPuzzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordPuzzleTests.release.xcconfig"; path = "Target Support Files/Pods-WordPuzzleTests/Pods-WordPuzzleTests.release.xcconfig"; sourceTree = "<group>"; };
+		B0092DCEFAB570A8B4F231AD /* Pods-WordPuzzleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordPuzzleTests.debug.xcconfig"; path = "Target Support Files/Pods-WordPuzzleTests/Pods-WordPuzzleTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E827B231658D524551BD93B8 /* Pods_WordPuzzle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +61,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC4F582054BD643D553AB7F /* Pods_WordPuzzleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		274363E7FE95D2AE04E691C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92720C4084D502C149C2589E /* Pods-WordPuzzle.debug.xcconfig */,
+				491C2C249236F2A9B37BE5D0 /* Pods-WordPuzzle.release.xcconfig */,
+				B0092DCEFAB570A8B4F231AD /* Pods-WordPuzzleTests.debug.xcconfig */,
+				96E5C4588426E7A1B9D4167C /* Pods-WordPuzzleTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6E28547424F2137000D64A6A = {
 			isa = PBXGroup;
 			children = (
 				6E28547F24F2137000D64A6A /* WordPuzzle */,
 				6E28549624F2137400D64A6A /* WordPuzzleTests */,
 				6E28547E24F2137000D64A6A /* Products */,
+				274363E7FE95D2AE04E691C6 /* Pods */,
+				CB340B07C3460BA6577B1835 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +122,15 @@
 			path = WordPuzzleTests;
 			sourceTree = "<group>";
 		};
+		CB340B07C3460BA6577B1835 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				47D3E8223D372AEC35E12C0F /* Pods_WordPuzzle.framework */,
+				53DA1E7C0A29198C208546A3 /* Pods_WordPuzzleTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E28549C24F2137400D64A6A /* Build configuration list for PBXNativeTarget "WordPuzzle" */;
 			buildPhases = (
+				AB712627D713B1B710448794 /* [CP] Check Pods Manifest.lock */,
 				6E28547924F2137000D64A6A /* Sources */,
 				6E28547A24F2137000D64A6A /* Frameworks */,
 				6E28547B24F2137000D64A6A /* Resources */,
+				91EF4BE7C89D5812838C89C3 /* [CP] Embed Pods Frameworks */,
+				6E2854A224F214DB00D64A6A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -123,6 +158,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E28549F24F2137400D64A6A /* Build configuration list for PBXNativeTarget "WordPuzzleTests" */;
 			buildPhases = (
+				0C016222D72ED448D81E148C /* [CP] Check Pods Manifest.lock */,
 				6E28548F24F2137400D64A6A /* Sources */,
 				6E28549024F2137400D64A6A /* Frameworks */,
 				6E28549124F2137400D64A6A /* Resources */,
@@ -194,6 +230,87 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C016222D72ED448D81E148C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WordPuzzleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E2854A224F214DB00D64A6A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		91EF4BE7C89D5812838C89C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WordPuzzle/Pods-WordPuzzle-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WordPuzzle/Pods-WordPuzzle-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WordPuzzle/Pods-WordPuzzle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB712627D713B1B710448794 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WordPuzzle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E28547924F2137000D64A6A /* Sources */ = {
@@ -360,6 +477,7 @@
 		};
 		6E28549D24F2137400D64A6A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92720C4084D502C149C2589E /* Pods-WordPuzzle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -377,6 +495,7 @@
 		};
 		6E28549E24F2137400D64A6A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 491C2C249236F2A9B37BE5D0 /* Pods-WordPuzzle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -394,6 +513,7 @@
 		};
 		6E2854A024F2137400D64A6A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0092DCEFAB570A8B4F231AD /* Pods-WordPuzzleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -415,6 +535,7 @@
 		};
 		6E2854A124F2137400D64A6A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96E5C4588426E7A1B9D4167C /* Pods-WordPuzzleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
