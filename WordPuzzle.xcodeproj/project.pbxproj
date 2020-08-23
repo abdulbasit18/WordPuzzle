@@ -199,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				6E2854B224F2175300D64A6A /* ViewControllers */,
-				6E2854B124F2174D00D64A6A /* UI */,
 				6E2854B024F2174300D64A6A /* ThirdParties */,
 				6E2854AF24F2173B00D64A6A /* Networking */,
 				6E2854AE24F2173500D64A6A /* Extensions */,
@@ -302,13 +301,6 @@
 				6E989F0624F2B52000ECEF1F /* Reachability.swift */,
 			);
 			path = ThirdParties;
-			sourceTree = "<group>";
-		};
-		6E2854B124F2174D00D64A6A /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		6E2854B224F2175300D64A6A /* ViewControllers */ = {

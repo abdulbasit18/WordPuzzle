@@ -105,20 +105,21 @@ final class MainGameViewModel: MainGameViewModelType {
             self?.present(words: words)
         }).disposed(by: disposeBag)
         
-        gameCenter.outputs.onEventSubject.subscribe(onNext: { (event) in
+        gameCenter.outputs.onEventSubject.subscribe(onNext: { [weak self] (event) in
+            guard let self = self else { return }
             self.stopTimer()
             switch event {
-                case .newRound(let number):
-                    print("Round Number \(number)")
-                case .newWordPair(let wordPair):
-                    self.currentWord = wordPair
-                    self.output.displayRound.onNext(wordPair)
-                case .currentGameResult(let results):
-                    print("Result \(results)")
-                case .gameFinished(let results):
-                    print("Game Finished")
-                    print(results)
-                    self.prepare(result: results)
+            case .newRound(let number):
+                print("Round Number \(number)")
+            case .newWordPair(let wordPair):
+                self.currentWord = wordPair
+                self.output.displayRound.onNext(wordPair)
+            case .currentGameResult(let results):
+                print("Result \(results)")
+            case .gameFinished(let results):
+                print("Game Finished")
+                print(results)
+                self.prepare(result: results)
             }
         }).disposed(by: disposeBag)
     }
@@ -126,7 +127,7 @@ final class MainGameViewModel: MainGameViewModelType {
     private func present(words: [WordModel]) {
         stopTimer()
         output.removeLoadingAnimation.onNext(nil)
-        let gameSetting =  GameSettings(numberOfRounds: 1, maximumLimitForRounds: 10, minimumLimitForRounds: 1)
+        let gameSetting =  GameSettings(numberOfRounds: 5, maximumLimitForRounds: 10, minimumLimitForRounds: 1)
         setupGameCenter(with: words, gameSettings: gameSetting)
         startNewRound()
         startTimer()
@@ -145,7 +146,6 @@ final class MainGameViewModel: MainGameViewModelType {
         setTimerAction { [weak self] in
             guard let self = self else { return}
             self.gameCenter.inputs.updateResultSubject.onNext(.noAnswerProvided)
-            //            self.startNewRound()
         }
         timer?.start(timeInterval: speedOfGame)
     }

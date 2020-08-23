@@ -49,14 +49,13 @@ final class MainGameViewController: BaseViewController, MainGameViewControllerTy
         
         //Setup Layout
         setupLayout()
+        
+        //Setup Rx Bindings
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     private func setupUI() {
@@ -140,6 +139,69 @@ final class MainGameViewController: BaseViewController, MainGameViewControllerTy
             make.bottom.equalToSuperview().offset(-Constants.buttonsMargin)
         }
     }
+    
+    private func _animateRendering(with duration: TimeInterval) {
+        
+        _floatingWordLabel.layer.removeAllAnimations()
+        _floatingWordLabel.frame.origin.x = 0
+        view.layoutIfNeeded()
+        
+        let viewWidth = view.frame.width
+        UIView.animateKeyframes(
+            withDuration: duration,
+            delay: 0,
+            options: [],
+            animations: { [weak self] in
+                self?._floatingWordLabel.frame.origin.x = -viewWidth
+                
+                self?.view.layoutIfNeeded()
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.2, animations: {
+                    self?._floatingWordLabel.alpha = 1
+                })
+                UIView.addKeyframe(withRelativeStartTime: 0.8, relativeDuration: 0.2, animations: {
+                    self?._floatingWordLabel.alpha = 0
+                })
+            }
+        )
+    }
+    
+    private func setupBindings() {
+        
+        //Outputs
+        
+        viewModel.input.viewDidLoadSubject.onNext(nil)
+        
+        _rightButton.rx.tap
+            .bind(to: viewModel.tappedCorrectAnswerSubject)
+            .disposed(by: disposeBag)
+        
+        _wrongButton.rx.tap
+            .bind(to: viewModel.tappedWrongAnswerSubject)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.displayRound.bind(to: display(_:))
+        
+        viewModel.output.resultSubject.subscribe(onNext: { [weak self] (result) in
+            guard let self = self else { return }
+            self.showAlert(with: "Result",
+                           and: result,
+                           actionTitle: "Restart",
+                           handler: { _ in
+                            self.viewModel.input.restartSubject.onNext(nil)
+            })
+        }).disposed(by: disposeBag)
+    }
+    
+    private func display(_ round: PublishSubject<RoundModel>) {
+        round.subscribe(onNext: { [weak self] (round) in
+            guard let self = self else { return }
+            self._wordLabel.text = round.currentWord
+            self._floatingWordLabel.text = round.translation + " "
+            self._animateRendering(with: self.viewModel.output.speedOfGame)
+            self._floatingWordLabel.setMargins()
+        }).disposed(by: disposeBag)
+    }
+    
 }
 
 // MARK: - Constants
