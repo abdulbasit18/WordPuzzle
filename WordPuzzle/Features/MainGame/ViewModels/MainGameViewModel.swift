@@ -58,7 +58,8 @@ final class MainGameViewModel: MainGameViewModelType {
     var removeLoadingAnimation = PublishSubject<Void?>()
     var showLoadingAnimation = PublishSubject<Void?>()
     var resultSubject = PublishSubject<String>()
-    var speedOfGame: Double = 5
+    var speedOfGame: Double = AppConstants.speedOfGame
+    var isGameFinished: Bool = false
     
     // MARK: - Properties
     private let repository: MainGameRepositoryType
@@ -79,46 +80,86 @@ final class MainGameViewModel: MainGameViewModelType {
     private func setupBindings() {
         
         //Inputs
+        inputBindings()
+        
+        //Outputs
+        outputBindings()
+    }
+    
+    private func inputBindings() {
+        
+        //Get ViewModelLoad invocation for data loading
         input.viewDidLoadSubject
             .bind(to: repository.input.getWordsSubject)
             .disposed(by: disposeBag)
         
+        //Restart game when tapped on restart button
         input.restartSubject.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
+            //Fetch words data source and start game from them
             self.repository.input.getWordsSubject.onNext(nil)
+            //Change game state
+            self.isGameFinished = false
         }).disposed(by: disposeBag)
         
-        input.tappedCorrectAnswerSubject
-            .map { [weak self] (_) -> GameResults.Answer in
-                (self?.currentWord?.isCorrectPair ?? false) ? .correct : .incorrect }
-            .bind(to: gameCenter.updateResultSubject)
-            .disposed(by: disposeBag)
-        
-        input.tappedWrongAnswerSubject
-            .map { [weak self] (_) -> GameResults.Answer in
-                (self?.currentWord?.isCorrectPair ?? false) ? .incorrect : .correct }
-            .bind(to: gameCenter.updateResultSubject)
-            .disposed(by: disposeBag)
-        
-        //Outputs
-        repository.output.wordsDataSubject.subscribe(onNext: { [weak self] (words) in
-            self?.present(words: words)
-        }).disposed(by: disposeBag)
-        
-        gameCenter.outputs.onEventSubject.subscribe(onNext: { [weak self] (event) in
+        //Evaluate answer when user tap correct button
+        input.tappedCorrectAnswerSubject.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
             self.stopTimer()
+            //Check if answer is correct
+            let answer: GameResults.Answer = (self.currentWord?.isCorrectPair ?? false) ? .correct : .incorrect
+            // Update the results
+            self.gameCenter.inputs.updateResultSubject.onNext(answer)
+            //Start new round if required
+            self.gameCenter.startNewRoundSubject.onNext(nil)
+            self.startTimer()
+        }).disposed(by: disposeBag)
+        
+        //Evaluate answer when user tap wrong button
+        input.tappedWrongAnswerSubject.subscribe(onNext: { [weak self] (_) in
+            guard let self = self else { return }
+            self.stopTimer()
+            //Check if answer is correct
+            let answer: GameResults.Answer = (self.currentWord?.isCorrectPair ?? false) ? .incorrect : .correct
+            // Update the results
+            self.gameCenter.inputs.updateResultSubject.onNext(answer)
+            //Start new round if required
+            self.gameCenter.startNewRoundSubject.onNext(nil)
+            self.startTimer()
+        }).disposed(by: disposeBag)
+    }
+    
+    private func outputBindings() {
+        
+        //Show loading animation to user since on viewLoad trigger we have called service
+        output.showLoadingAnimation.onNext(nil)
+        
+        //Subscribed for data source from repository
+        repository.output.wordsDataSubject.subscribe(onNext: { [weak self] (words) in
+            self?.output.removeLoadingAnimation.onNext(nil)
+            //Start game with given words
+            self?.present(words: words)
+            }, onError: { [weak self] _ in
+                self?.output.removeLoadingAnimation.onNext(nil)
+        }).disposed(by: disposeBag)
+        
+        //Get game events and changed ui accordingly
+        gameCenter.outputs.onEventSubject.subscribe(onNext: { [weak self] (event) in
+            guard let self = self else { return }
             switch event {
             case .newRound(let number):
                 print("Round Number \(number)")
             case .newWordPair(let wordPair):
+                //Get new pair and update the UI
                 self.currentWord = wordPair
                 self.output.displayRound.onNext(wordPair)
             case .currentGameResult(let results):
                 print("Result \(results)")
             case .gameFinished(let results):
-                print("Game Finished")
-                print(results)
+                //After finishing the game clean game settings
+                self.isGameFinished = true
+                self.stopTimer()
+                //Update ui with the result
                 self.prepare(result: results)
             }
         }).disposed(by: disposeBag)
@@ -127,7 +168,7 @@ final class MainGameViewModel: MainGameViewModelType {
     private func present(words: [WordModel]) {
         stopTimer()
         output.removeLoadingAnimation.onNext(nil)
-        let gameSetting =  GameSettings(numberOfRounds: 5, maximumLimitForRounds: 10, minimumLimitForRounds: 1)
+        let gameSetting =  GameSettings(numberOfRounds: 3, maximumLimitForRounds: 10, minimumLimitForRounds: 1)
         setupGameCenter(with: words, gameSettings: gameSetting)
         startNewRound()
         startTimer()
@@ -145,7 +186,11 @@ final class MainGameViewModel: MainGameViewModelType {
     private func startTimer() {
         setTimerAction { [weak self] in
             guard let self = self else { return}
-            self.gameCenter.inputs.updateResultSubject.onNext(.noAnswerProvided)
+            if !self.isGameFinished {
+                self.gameCenter.inputs.updateResultSubject.onNext(.noAnswerProvided)
+                self.gameCenter.inputs.startNewRoundSubject.onNext(nil) } else {
+                self.stopTimer()
+            }
         }
         timer?.start(timeInterval: speedOfGame)
     }

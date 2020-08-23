@@ -76,16 +76,20 @@ final class MainGameViewController: BaseViewController, MainGameViewControllerTy
         stackView.spacing = 8
         navigationItem.titleView = stackView
         
+        // Right Button Setup
         _rightButton.setImage(
             UIImage(named: "Right")?.withRenderingMode(.alwaysOriginal),
             for: .normal)
+        //Wrong Button Setup
         _wrongButton.setImage(
             UIImage(named: "Wrong")?.withRenderingMode(.alwaysOriginal),
             for: .normal)
         
+        //Word Label UI Setup
         _wordLabel.font = .systemFont(ofSize: 30)
         _wordLabel.textColor = .orange
         
+        //Flatting Button UI Setup
         _floatingWordLabel.textAlignment = .center
         _floatingWordLabel.backgroundColor = .orange
         _floatingWordLabel.textColor = .white
@@ -167,20 +171,39 @@ final class MainGameViewController: BaseViewController, MainGameViewControllerTy
     
     private func setupBindings() {
         
+        //Inputs
+        
+        //Show loader animation
+        viewModel.output.showLoadingAnimation.subscribe(onNext: { [weak self] (_) in
+            self?.startAnimating()
+        }).disposed(by: disposeBag)
+        
+        //Remove loader animation
+        viewModel.output.removeLoadingAnimation.subscribe(onNext: { [weak self] (_) in
+            self?.stopAnimating()
+        }).disposed(by: disposeBag)
+        
         //Outputs
         
+        //Notify viewModel that view is loaded
         viewModel.input.viewDidLoadSubject.onNext(nil)
         
+        //Right button tap action
         _rightButton.rx.tap
             .bind(to: viewModel.tappedCorrectAnswerSubject)
             .disposed(by: disposeBag)
         
+        //Left button tap action
         _wrongButton.rx.tap
             .bind(to: viewModel.tappedWrongAnswerSubject)
             .disposed(by: disposeBag)
         
-        viewModel.output.displayRound.bind(to: display(_:))
+        //display new pair
+        viewModel.output.displayRound.subscribe(onNext: { [weak self] (round) in
+            self?.display(round: round)
+        }).disposed(by: disposeBag)
         
+        //Show result on popup
         viewModel.output.resultSubject.subscribe(onNext: { [weak self] (result) in
             guard let self = self else { return }
             self.showAlert(with: "Result",
@@ -192,16 +215,12 @@ final class MainGameViewController: BaseViewController, MainGameViewControllerTy
         }).disposed(by: disposeBag)
     }
     
-    private func display(_ round: PublishSubject<RoundModel>) {
-        round.subscribe(onNext: { [weak self] (round) in
-            guard let self = self else { return }
-            self._wordLabel.text = round.currentWord
-            self._floatingWordLabel.text = round.translation + " "
-            self._animateRendering(with: self.viewModel.output.speedOfGame)
-            self._floatingWordLabel.setMargins()
-        }).disposed(by: disposeBag)
+    private func display(round: RoundModel) {
+        self._wordLabel.text = round.currentWord
+        self._floatingWordLabel.text = round.translation + " "
+        self._animateRendering(with: self.viewModel.output.speedOfGame)
+        self._floatingWordLabel.setMargins()
     }
-    
 }
 
 // MARK: - Constants

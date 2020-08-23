@@ -53,11 +53,15 @@ final class MainGameRepository: MainGameRepositoryType {
     // Note: Currently Only local fetch is implemented
     private func setupBindings() {
         //Input
+        
+        //Get request from view model from data source and pass it to local repo
         input.getWordsSubject
             .bind(to: localStore.input.getWordsSubject)
             .disposed(by: disposeBag)
         
         //output
+        
+        //Pass local fetched data source to viewModel
         localStore.output.wordsDataSubject
             .bind(to: output.wordsDataSubject)
             .disposed(by: disposeBag)

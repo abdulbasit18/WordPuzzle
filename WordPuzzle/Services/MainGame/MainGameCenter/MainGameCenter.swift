@@ -65,24 +65,29 @@ final class MainGameCenter: MainGameCenterType {
     
     private func setupBindings() {
         
-        //Inputs
+        // Inputs
+        
+        //Get an answer from user and update results
         inputs.updateResultSubject.subscribe(onNext: { [weak self] (answer) in
             self?.updateResult(with: answer)
-            self?.startNewRound()
         }).disposed(by: disposeBag)
         
+        //Start new round by generating new pair
         inputs.startNewRoundSubject.subscribe(onNext: { [weak self] (_) in
             self?.startNewRound()
         }).disposed(by: disposeBag)
         
-        // Outputs
+        //Get pair from word generator
         wordPairGenerator.outputs.getPairSubject.subscribe(onNext: { [weak self] (pair) in
             guard let self = self else { return }
+            //Update game state
             self.gameResult.currentRound += 1
             if self.gameResult.currentRound > self.gameSettings.numberOfRounds {
+                //Update viewmodel
                 self.outputs.onEventSubject.onNext(.gameFinished(self.gameResult))
                 self.cleanData()
             } else {
+                //Update viewmodel
                 self.outputs.onEventSubject.onNext(.newRound(self.gameResult.currentRound))
                 self.outputs.onEventSubject.onNext(.newWordPair(pair))
             }
@@ -90,6 +95,7 @@ final class MainGameCenter: MainGameCenterType {
         }).disposed(by: disposeBag)
     }
     
+    //Restart game results
     private func cleanData() {
         gameResult = GameResults()
     }

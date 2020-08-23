@@ -52,14 +52,19 @@ final class WordPairGenerator: WordPairGeneratorType {
     
     private func setupBindings() {
         //Inputs
+        
+        //Get request to generate a pair
         inputs.generatePairSubject
             .subscribe(onNext: { [weak self] (isCorrectPair) in
                 if let pair = self?.generatePair(isCorrectPair: isCorrectPair) {
                     //Output
+                    
+                    //Pass generated pair to game center
                     self?.outputs.getPairSubject.onNext(pair)
                 }
             }).disposed(by: disposeBag)
         
+        //Get words data
         inputs.updateWordsSubject
             .subscribe(onNext: { [weak self] (words) in
                 self?.updateWords(words)
@@ -72,14 +77,19 @@ final class WordPairGenerator: WordPairGeneratorType {
     
     private func generatePair(isCorrectPair: Bool) -> RoundModel {
         let totalPairCount = allWords.count - 1
+        //Get random element form data source
         let randomInt = Int.random(in: 0...totalPairCount)
         let randomElement = allWords[randomInt]
+        /*remove selected word from data source so
+         that it does not get included when generated incorrect pair*/
         allWords.remove(at: randomInt)
         if isCorrectPair {
+            //Return correct translation model
             return RoundModel(currentWord: randomElement.english,
                               translation: randomElement.spanish,
                               isCorrectPair: true)
         } else {
+            //Return incorrect translation model
             let randomWord = allWords.randomElement()!
             return RoundModel(currentWord: randomElement.english,
                               translation: randomWord.spanish,

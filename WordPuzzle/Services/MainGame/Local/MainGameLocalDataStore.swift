@@ -48,6 +48,7 @@ final class MainGameLocalDataStore: MainGameLocalDataStoreType {
     }
     
     private func setupBindings() {
+        //Get request to fetch words data source
         input.getWordsSubject.subscribe(onNext: { [weak self] (_) in
             self?.fetchLocalWords()
         }).disposed(by: disposeBag)
@@ -63,6 +64,7 @@ final class MainGameLocalDataStore: MainGameLocalDataStoreType {
                                     guard let self = self else { return }
                                     switch result {
                                     case .success(let words):
+                                        //Pass data source to viewModel
                                         self.output.wordsDataSubject.onNext(words)
                                     case .failure:
                                         break // Error is not handled due to time constraint

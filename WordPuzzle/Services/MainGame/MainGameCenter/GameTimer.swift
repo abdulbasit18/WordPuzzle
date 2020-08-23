@@ -37,6 +37,7 @@ final class GameTimer: GameTimerType {
     func stop() {
         internalTimer?.invalidate()
         internalTimer = nil
+        timerAction = nil
     }
     
     @objc
