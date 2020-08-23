@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6E28548124F2137000D64A6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28548024F2137000D64A6A /* AppDelegate.swift */; };
-		6E28548324F2137000D64A6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28548224F2137000D64A6A /* SceneDelegate.swift */; };
-		6E28548524F2137000D64A6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28548424F2137000D64A6A /* ViewController.swift */; };
-		6E28548824F2137000D64A6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E28548624F2137000D64A6A /* Main.storyboard */; };
 		6E28548A24F2137400D64A6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E28548924F2137400D64A6A /* Assets.xcassets */; };
 		6E28548D24F2137400D64A6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E28548B24F2137400D64A6A /* LaunchScreen.storyboard */; };
 		6E28549824F2137400D64A6A /* WordPuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E28549724F2137400D64A6A /* WordPuzzleTests.swift */; };
@@ -34,9 +31,6 @@
 		53DA1E7C0A29198C208546A3 /* Pods_WordPuzzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordPuzzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E28547D24F2137000D64A6A /* WordPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E28548024F2137000D64A6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6E28548224F2137000D64A6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6E28548424F2137000D64A6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6E28548724F2137000D64A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E28548924F2137400D64A6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E28548C24F2137400D64A6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E28548E24F2137400D64A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,13 +96,13 @@
 		6E28547F24F2137000D64A6A /* WordPuzzle */ = {
 			isa = PBXGroup;
 			children = (
-				6E28548024F2137000D64A6A /* AppDelegate.swift */,
-				6E28548224F2137000D64A6A /* SceneDelegate.swift */,
-				6E28548424F2137000D64A6A /* ViewController.swift */,
-				6E28548624F2137000D64A6A /* Main.storyboard */,
-				6E28548924F2137400D64A6A /* Assets.xcassets */,
-				6E28548B24F2137400D64A6A /* LaunchScreen.storyboard */,
-				6E28548E24F2137400D64A6A /* Info.plist */,
+				6E2854A324F2161900D64A6A /* AppStartup */,
+				6E2854A524F216A200D64A6A /* Common */,
+				6E2854A624F216B600D64A6A /* DependencyInjection */,
+				6E2854A924F216FB00D64A6A /* SupportingFiles */,
+				6E2854A824F216EE00D64A6A /* Services */,
+				6E2854A724F216CD00D64A6A /* Features */,
+				6E2854A424F2166C00D64A6A /* Resources */,
 			);
 			path = WordPuzzle;
 			sourceTree = "<group>";
@@ -120,6 +114,131 @@
 				6E28549924F2137400D64A6A /* Info.plist */,
 			);
 			path = WordPuzzleTests;
+			sourceTree = "<group>";
+		};
+		6E2854A324F2161900D64A6A /* AppStartup */ = {
+			isa = PBXGroup;
+			children = (
+				6E2854AA24F2170800D64A6A /* AppCoordinator */,
+				6E28548024F2137000D64A6A /* AppDelegate.swift */,
+				6E28548B24F2137400D64A6A /* LaunchScreen.storyboard */,
+				6E28548E24F2137400D64A6A /* Info.plist */,
+			);
+			path = AppStartup;
+			sourceTree = "<group>";
+		};
+		6E2854A424F2166C00D64A6A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6E28548924F2137400D64A6A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6E2854A524F216A200D64A6A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6E2854B224F2175300D64A6A /* ViewControllers */,
+				6E2854B124F2174D00D64A6A /* UI */,
+				6E2854B024F2174300D64A6A /* ThirdParties */,
+				6E2854AF24F2173B00D64A6A /* Networking */,
+				6E2854AE24F2173500D64A6A /* Extensions */,
+				6E2854AD24F2173000D64A6A /* Enumerations */,
+				6E2854AC24F2172500D64A6A /* Coordinator */,
+				6E2854AB24F2171E00D64A6A /* Constants */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6E2854A624F216B600D64A6A /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		6E2854A724F216CD00D64A6A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6E2854A824F216EE00D64A6A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6E2854A924F216FB00D64A6A /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		6E2854AA24F2170800D64A6A /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppCoordinator;
+			sourceTree = "<group>";
+		};
+		6E2854AB24F2171E00D64A6A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		6E2854AC24F2172500D64A6A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6E2854AD24F2173000D64A6A /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		6E2854AE24F2173500D64A6A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6E2854AF24F2173B00D64A6A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6E2854B024F2174300D64A6A /* ThirdParties */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParties;
+			sourceTree = "<group>";
+		};
+		6E2854B124F2174D00D64A6A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6E2854B224F2175300D64A6A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		CB340B07C3460BA6577B1835 /* Frameworks */ = {
@@ -218,7 +337,6 @@
 			files = (
 				6E28548D24F2137400D64A6A /* LaunchScreen.storyboard in Resources */,
 				6E28548A24F2137400D64A6A /* Assets.xcassets in Resources */,
-				6E28548824F2137000D64A6A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,9 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E28548524F2137000D64A6A /* ViewController.swift in Sources */,
 				6E28548124F2137000D64A6A /* AppDelegate.swift in Sources */,
-				6E28548324F2137000D64A6A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,14 +458,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6E28548624F2137000D64A6A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E28548724F2137000D64A6A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6E28548B24F2137400D64A6A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -481,7 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WordPuzzle/Info.plist;
+				INFOPLIST_FILE = WordPuzzle/AppStartup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WordPuzzle/Info.plist;
+				INFOPLIST_FILE = WordPuzzle/AppStartup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
