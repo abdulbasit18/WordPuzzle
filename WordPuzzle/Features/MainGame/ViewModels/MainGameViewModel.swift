@@ -168,7 +168,7 @@ final class MainGameViewModel: MainGameViewModelType {
     private func present(words: [WordModel]) {
         stopTimer()
         output.removeLoadingAnimation.onNext(nil)
-        let gameSetting =  GameSettings(numberOfRounds: 3, maximumLimitForRounds: 10, minimumLimitForRounds: 1)
+        let gameSetting =  GameSettings(numberOfRounds: 5, maximumLimitForRounds: 10, minimumLimitForRounds: 1)
         setupGameCenter(with: words, gameSettings: gameSetting)
         startNewRound()
         startTimer()
