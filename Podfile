@@ -13,7 +13,6 @@ target 'WordPuzzle' do
    pod 'NVActivityIndicatorView'
    pod 'SwinjectAutoregistration'
    pod 'SwiftLint'
-   pod 'NVActivityIndicatorView'
 
   target 'WordPuzzleTests' do
     inherit! :search_paths
