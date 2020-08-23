@@ -6,6 +6,8 @@
 //  Copyright © 2020 Abdul Basit. All rights reserved.
 //
 
+import RxSwift
+
 // MARK: - MainGame Protocol
 protocol MainGameViewModelType {
 }
@@ -13,7 +15,12 @@ protocol MainGameViewModelType {
 // MARK: - MainGameViewModel Implementation
 
 final class MainGameViewModel: MainGameViewModelType {
-    init() {
-        
+    // MARK: - Properties
+    private let repository: MainGameRepositoryType
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Initializer
+    init(repository: MainGameRepositoryType) {
+        self.repository = repository
     }
 }
