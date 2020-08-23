@@ -46,4 +46,4 @@ instead of an implementation of the networking layer to get data from the URL pr
 - Game setting screen implementation.
 - Game Score screen implementation.
 - Better Rx bindings.
-- better UI Tests and UnitTests
+- Implentaion of Unit and UI testing but i tried to write as much testable code as possible.
